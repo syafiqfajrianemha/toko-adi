@@ -37,9 +37,7 @@
                 <div class="flex items-center justify-end mt-4">
                     <p class="text-sm text-gray-600">Belum punya akun? <a class="underline hover:text-gray-900 rounded-md" href="{{ route('register') }}">Daftar dulu</a></p>
 
-                    <x-primary-button class="ms-3">
-                        {{ __('Masuk') }}
-                    </x-primary-button>
+                    <button type="submit" class="ms-3 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:bg-blue-500 active:bg-blue-700 focus:outline-none transition ease-in-out duration-150">Masuk</button>
                 </div>
             </form>
         </div>

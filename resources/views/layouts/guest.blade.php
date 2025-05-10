@@ -1,115 +1,58 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Toko Adi') }}</title>
 
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <style>
-            .children {
-                background: #fff;
-            }
+    @stack('style')
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+    <div class="min-h-screen flex flex-col">
+        @include('layouts.guest-navigation')
 
-            .children a,
-            .children .separator {
-                display: block;
-                margin: 5px 0px;
-                padding: 5px 10px;
-            }
+        <main class="flex-grow">
+            {{ $slot }}
+        </main>
 
-            .children .separator {
-                border-top-width: 2px;
-            }
-
-            .children a:hover {
-                color: #818cf8;
-            }
-
-            @media (min-width: 768px) {
-                .children {
-                    position: absolute;
-                    width: 155px;
-                    top: 70px;
-                }
-            }
-
-            @media (max-width: 640px) {
-                #dropdownHalal {
-                    position: static;
-                    width: 100%;
-                }
-            }
-        </style>
-
-        @stack('style')
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.guest-navigation')
-
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
-
-    <footer class="bg-black text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Tentang Kami</h3>
-                    <p class="text-sm leading-relaxed text-gray-200">
-                        Toko Adi
-                        <br>
-                        Jl. Jalan Jalan, Purwokerto
-                    </p>
+        <footer class="bg-blue-900 text-white py-12 mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Tentang Kami</h3>
+                        <p class="text-sm leading-relaxed text-gray-200">
+                            Belanja kebutuhan harian Anda dengan mudah dan cepat solusinya di <strong>Toko Adi</strong>.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Hubungi Kami</h3>
+                        <ul class="space-y-2 text-sm text-gray-200">
+                            <li><a href="https://wa.me/6285179923306" class="hover:underline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Akses Cepat</h3>
+                        <ul class="text-sm text-gray-200 space-y-2">
+                            <li><a href="{{ route('cart.index') }}" class="hover:underline">Keranjang belanja</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Hubungi Kami</h3>
-                    <ul class="space-y-2 text-sm text-gray-200">
-                        <li><a href="#" class="hover:underline">WhatsApp</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Akses Cepat</h3>
-                    <ul class="text-sm text-gray-200 space-y-2">
-                        <li><a href="#" class="hover:underline" target="_blank">Riwayat Transaksi</a></li>
-                    </ul>
+                <div class="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-300">
+                    &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
                 </div>
             </div>
-
-            <div class="mt-10 border-t border-white pt-6 text-center text-sm text-white">
-                &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="{{ asset('js/flowbite.min.js') }}"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const dropdownButton = document.getElementById("dropdownHalalButton");
-            const dropdownMenu = document.getElementById("dropdownHalal");
-
-            dropdownButton.addEventListener("click", function (event) {
-                event.stopPropagation();
-                dropdownMenu.classList.toggle("hidden");
-            });
-
-            document.addEventListener("click", function (event) {
-                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add("hidden");
-                }
-            });
-        });
-    </script>
     @stack('script')
+</body>
 </html>
