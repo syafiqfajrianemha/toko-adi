@@ -27,7 +27,7 @@
                 <div class="text-right mt-6">
                     @php
                         $pesanText = urlencode("Halo Toko Adi, saya " . Auth::user()->name . " ingin memesan:\n" . collect($cartItems)->map(fn($i) => "{$i['name']} x {$i['qty']}")->implode("\n"));
-                        $whatsappLink = "https://wa.me/6285179923306?text={$pesanText}";
+                        $whatsappLink = "https://wa.me/" . $whatsapp . "?text={$pesanText}";
                     @endphp
 
                     <a href="{{ $whatsappLink }}" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600">

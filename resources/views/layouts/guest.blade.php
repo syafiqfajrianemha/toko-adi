@@ -35,7 +35,7 @@
                     <div>
                         <h3 class="text-xl font-semibold mb-4">Hubungi Kami</h3>
                         <ul class="space-y-2 text-sm text-gray-200">
-                            <li><a href="https://wa.me/6285179923306" class="hover:underline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                            <li><a href="https://wa.me/{{ $whatsapp }}" class="hover:underline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                         </ul>
                     </div>
                     <div>

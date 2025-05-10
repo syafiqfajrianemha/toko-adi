@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleCheck;
@@ -41,6 +42,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
             Route::patch('/product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
             Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+
+            Route::get('/whatsapp', [PhoneController::class, 'index'])->name('admin.whatsapp.index');
+            Route::post('/whatsapp', [PhoneController::class, 'store'])->name('admin.whatsapp.store');
+            Route::get('/whatsapp/create', [PhoneController::class, 'create'])->name('admin.whatsapp.create');
+            Route::get('/whatsapp/edit/{id}', [PhoneController::class, 'edit'])->name('admin.whatsapp.edit');
+            Route::patch('/whatsapp/{id}', [PhoneController::class, 'update'])->name('admin.whatsapp.update');
+            Route::delete('/whatsapp/{id}', [PhoneController::class, 'destroy'])->name('admin.whatsapp.destroy');
         });
     });
 });
