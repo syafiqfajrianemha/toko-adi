@@ -16,6 +16,8 @@ Route::get('/produk/{id}', [HomeController::class, 'detailProduk'])->name('detai
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
+Route::get('/kategori/{slug}', [HomeController::class, 'filterByCategori'])->name('filter.kategori');
+
 Route::middleware('auth')->group(function () {
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');

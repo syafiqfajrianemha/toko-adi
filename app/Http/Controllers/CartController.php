@@ -13,17 +13,22 @@ class CartController extends Controller
             return redirect()->route('login')->with('message', 'Silakan login terlebih dahulu untuk menambahkan ke keranjang.');
         }
 
+        $request->validate([
+            'qty' => 'numeric|min:1'
+        ]);
+
         $product = Product::findOrFail($id);
 
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
-            $cart[$id]['qty'] += 1;
+            $cart[$id]['qty'] += $request->qty;
         } else {
             $cart[$id] = [
                 "name" => $product->name,
                 "price" => $product->price,
-                "qty" => 1
+                "qty" => $request->qty,
+                "image" => $product->image,
             ];
         }
 
